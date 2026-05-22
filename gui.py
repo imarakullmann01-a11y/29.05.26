@@ -399,11 +399,11 @@ class QuizApp:
 
         if ist_richtig:
             self.lbl_feedback.config(
-                text=f"Richtig!  {feedback}", fg=FARBE_RICHTIG
+                text=f" {feedback}", fg=FARBE_RICHTIG
             )
         else:
             self.lbl_feedback.config(
-                text=f"Falsch!  {feedback}", fg=FARBE_FALSCH
+                text=f"{feedback}", fg=FARBE_FALSCH
             )
 
         self.lbl_score.config(
