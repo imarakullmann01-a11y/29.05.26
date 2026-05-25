@@ -262,7 +262,7 @@ class QuizApp:
         self.lbl_frage.config(
             text="Willkommen! Wähle eine Option um zu starten:"
         )
-        self.lbl_eingabe.config(text="")
+        self.lbl_eingabe.config(text="Dein Name : ")
         self.eingabe_var.set("")
         self._radiobuttons_leeren()
         self.lbl_feedback.config(text="", fg="black")
@@ -273,7 +273,10 @@ class QuizApp:
         self._btn_grau(self.btn3, "3)  Punktestände anzeigen",                         self._zeige_scores)
         self._btn_grau(self.btn4, "4)  Regeln anzeigen",                               self._zeige_regeln)
         self._btn_rot (self.btn5, "5)  Beenden",                                       self.root.quit)
-
+        for btn in [self.btn1, self.btn2, self.btn3, self.btn4, self.btn5]:
+            btn.pack_forget()
+            btn.pack(pady=3, ipadx=60)
+            
     # ── Namenseingabe ────────────────────────────────────────────────────
     def _zeige_namenseingabe(self):
         self.lbl_status.config(text="  Komplettes Quiz")
@@ -351,6 +354,8 @@ class QuizApp:
                  f"| Frage {nr}/{gesamt}"
         )
         self.lbl_frage.config(text=frage.text)
+        self.lbl_eingabe.config(text="")
+        self.entry.pack_forget()
         self.lbl_feedback.config(text="", fg="black")
         self.lbl_score.config(
             text=f"Aktuelle Punkte: {self.session.aktuelle_punkte}"
