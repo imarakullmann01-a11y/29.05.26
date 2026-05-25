@@ -254,18 +254,51 @@ class QuizApp:
         for rb in self.radio_buttons:
             rb.pack_forget()
 
-    # ── Hauptmenü ────────────────────────────────────────────────────────
+# ── Hauptmenü (Seite 1: Namenseingabe) ──────────────────────────────
     def _zeige_hauptmenu(self):
         self.session = None
         self._is_demo = False
         self.lbl_status.config(text="Startseite")
         self.lbl_frage.config(text="Willkommen!")
-        self.lbl_eingabe.config(text="Dein Name:")
+        self.lbl_eingabe.config(text="")
         self.eingabe_var.set("")
+        self.entry.config(fg="grey")
+        self.entry.insert(0, "Name eingeben")
+        self.entry.bind("<FocusIn>", self._clear_placeholder)
+        self.entry.bind("<FocusOut>", self._set_placeholder)
         self.entry.pack(anchor="w", pady=(4, 12))
-        self.lbl_score.config(text="Wähle eine Option um zu starten:")
+        self._radiobuttons_leeren()
+        self.lbl_feedback.config(text="", fg="black")
+        self.lbl_score.config(text="")
 
+        self._btn_blau(self.btn1, "Weiter →", self._name_bestaetigen)
+        self._buttons_leeren(von=2, bis=5)
+
+    def _clear_placeholder(self, event):
+        if self.entry.get() == "Name eingeben":
+            self.entry.delete(0, tk.END)
+            self.entry.config(fg=FARBE_TEXT)
+
+    def _set_placeholder(self, event):
+        if not self.entry.get():
+            self.entry.insert(0, "Name eingeben")
+            self.entry.config(fg="grey")
+
+    def _name_bestaetigen(self):
+        name = self.eingabe_var.get().strip()
+        if not name or name == "Name eingeben":
+            messagebox.showerror("Fehler", "Bitte gib deinen Namen ein!")
+            return
+        self._zeige_optionen(name)
+
+    # ── Hauptmenü (Seite 2: Optionen) ───────────────────────────────────
+    def _zeige_optionen(self, name):
+        self.lbl_frage.config(text=f"Willkommen, {name}!")
+        self.lbl_eingabe.config(text="")
+        self.entry.pack_forget()
         self.lbl_score.config(text="Wähle eine Option um zu starten:")
+        self.lbl_feedback.config(text="", fg="black")
+
         self._btn_blau(self.btn1, "1)  Komplettes Quiz  (leicht → mittel → schwer)", self._zeige_namenseingabe)
         self._btn_grau(self.btn2, "2)  Level-Demo  (einzelnes Level auswählen)",      self._zeige_level_demo)
         self._btn_grau(self.btn3, "3)  Punktestände anzeigen",                         self._zeige_scores)
@@ -274,7 +307,7 @@ class QuizApp:
 
         for btn in [self.btn1, self.btn2, self.btn3, self.btn4, self.btn5]:
             btn.pack_forget()
-            btn.pack(anchor="center", pady=3, ipadx=80, fill=None)
+            btn.pack(anchor="center", pady=3, ipadx=80)
             btn.config(width=40)
 
     # ── Namenseingabe ────────────────────────────────────────────────────
