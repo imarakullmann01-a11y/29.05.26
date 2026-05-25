@@ -383,7 +383,7 @@ class QuizApp:
                 command=lambda: self.eingabe_var.set("nein")
             )
             for rb in self.radio_buttons[2:]:
-                rb.config(text="", command=self._dummy)
+                rb.pack_forget()
             self.radio_var.set(-1)
 
         elif frage.qtype in ("text", "code"):
