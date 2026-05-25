@@ -123,7 +123,7 @@ class QuizApp:
         tk.Label(
             self.karte,
             text="",
-            bg="#E2E8F0",
+            bg=FARBE_KARTE,
             height=1
         ).pack(fill="x", pady=(0, 12))
 
@@ -206,7 +206,7 @@ class QuizApp:
         tk.Label(
             self.karte,
             text="",
-            bg="#E2E8F0",
+            bg=FARBE_KARTE,
             height=1
         ).pack(fill="x", pady=(0, 12))
 
