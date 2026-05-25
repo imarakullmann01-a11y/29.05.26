@@ -343,7 +343,7 @@ class QuizApp:
 
         frage = self.session.aktuelle_frage
         for rb in self.radio_buttons:          # ← neu
-            rb.pack(anchor="w", padx=10, pady=2) 
+            rb.pack(anchor="w", padx=10, pady=2, before=self.lbl_feedback)
         nr, gesamt = self.session.frage_nummer
 
         self.lbl_status.config(
