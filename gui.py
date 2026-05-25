@@ -388,7 +388,7 @@ class QuizApp:
 
         elif frage.qtype in ("text", "code"):
             self.lbl_eingabe.config(text="Deine Antwort:")
-            self.entry.pack(anchor="w", pady=(4, 12))
+            self.entry.pack(anchor="w", pady=(4, 12), before=self.lbl_feedback)
             self._radiobuttons_leeren()
 
         self._btn_blau(self.btn1, "Antwort bestätigen", self._antwort_pruefen)
