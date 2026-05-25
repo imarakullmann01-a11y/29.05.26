@@ -259,7 +259,7 @@ class QuizApp:
         self.session = None
         self._is_demo = False
         self.lbl_status.config(text="Startseite")
-        self.lbl_frage.config(text="Willkommen! Wähle eine Option um zu starten:")
+        self.lbl_frage.config(text="Willkommen! ")
         self.lbl_eingabe.config(text="Dein Name:")
         self.eingabe_var.set("")
         self.entry.pack(anchor="w", pady=(4, 12))
@@ -267,6 +267,7 @@ class QuizApp:
         self.lbl_feedback.config(text="", fg="black")
         self.lbl_score.config(text="")
 
+        self.lbl_score.config(text="Wähle eine Option um zu starten:")
         self._btn_blau(self.btn1, "1)  Komplettes Quiz  (leicht → mittel → schwer)", self._zeige_namenseingabe)
         self._btn_grau(self.btn2, "2)  Level-Demo  (einzelnes Level auswählen)",      self._zeige_level_demo)
         self._btn_grau(self.btn3, "3)  Punktestände anzeigen",                         self._zeige_scores)
@@ -275,7 +276,8 @@ class QuizApp:
 
         for btn in [self.btn1, self.btn2, self.btn3, self.btn4, self.btn5]:
             btn.pack_forget()
-            btn.pack(anchor="center", pady=3, ipadx=80)
+            btn.pack(anchor="center", pady=3, ipadx=80, fill=None)
+            btn.config(width=40)
 
     # ── Namenseingabe ────────────────────────────────────────────────────
     def _zeige_namenseingabe(self):
