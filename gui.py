@@ -10,7 +10,7 @@ FARBE_KOPF_BG = "#1D4ED8"   # Dunkelblau (Kopfzeile)
 FARBE_KOPF_FG = "#FFFFFF"
 FARBE_TEXT    = "#1E3A5F"   # Dunkles Blau (Text)
 FARBE_SUBTEXT = "#3B82F6"   # Mittleres Blau
-
+                                                                                                                                                                                                                                                                                                                                      
 FARBE_BLAU    = "#60A5FA"   # Pastellblau (Hauptbutton)
 FARBE_BLAU_H  = "#3B82F6"   # Hover
 FARBE_GRAU    = "#93C5FD"   # Helles Pastellblau (Sekundär)
@@ -21,7 +21,7 @@ FARBE_FG      = "#FFFFFF"
 
 FARBE_RICHTIG = "#16A34A"
 FARBE_FALSCH  = "#DC2626"
-
+ 
 
 class QuizApp:
     """
@@ -179,7 +179,9 @@ class QuizApp:
                 activebackground=FARBE_KARTE
             )
             rb.pack(anchor="w", padx=10, pady=2)
+            rb.pack_forget()  
             self.radio_buttons.append(rb)
+
 
         # Feedback-Label (Folie 8 — fg= für Farbe)
         self.lbl_feedback = tk.Label(
@@ -250,7 +252,7 @@ class QuizApp:
 
     def _radiobuttons_leeren(self):
         for rb in self.radio_buttons:
-            rb.config(text="", command=self._dummy)
+            rb.pack_forget()
 
     # ── Hauptmenü ────────────────────────────────────────────────────────
     def _zeige_hauptmenu(self):
@@ -340,6 +342,8 @@ class QuizApp:
             return
 
         frage = self.session.aktuelle_frage
+        for rb in self.radio_buttons:          # ← neu
+            rb.pack(anchor="w", padx=10, pady=2) 
         nr, gesamt = self.session.frage_nummer
 
         self.lbl_status.config(
