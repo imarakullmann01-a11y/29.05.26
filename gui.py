@@ -259,13 +259,11 @@ class QuizApp:
         self.session = None
         self._is_demo = False
         self.lbl_status.config(text="Startseite")
-        self.lbl_frage.config(text="Willkommen! ")
+        self.lbl_frage.config(text="Willkommen!")
         self.lbl_eingabe.config(text="Dein Name:")
         self.eingabe_var.set("")
         self.entry.pack(anchor="w", pady=(4, 12))
-        self._radiobuttons_leeren()
-        self.lbl_feedback.config(text="", fg="black")
-        self.lbl_score.config(text="")
+        self.lbl_score.config(text="Wähle eine Option um zu starten:")
 
         self.lbl_score.config(text="Wähle eine Option um zu starten:")
         self._btn_blau(self.btn1, "1)  Komplettes Quiz  (leicht → mittel → schwer)", self._zeige_namenseingabe)
@@ -390,6 +388,7 @@ class QuizApp:
 
         elif frage.qtype in ("text", "code"):
             self.lbl_eingabe.config(text="Deine Antwort:")
+            self.entry.pack(anchor="w", pady=(4, 12))
             self._radiobuttons_leeren()
 
         self._btn_blau(self.btn1, "Antwort bestätigen", self._antwort_pruefen)
