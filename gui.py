@@ -263,6 +263,7 @@ class QuizApp:
         self.lbl_eingabe.config(text="")
         self.eingabe_var.set("")
         self.entry.config(fg="grey")
+        self.entry.delete(0, tk.END)
         self.entry.insert(0, "Name eingeben")
         self.entry.bind("<FocusIn>", self._clear_placeholder)
         self.entry.bind("<FocusOut>", self._set_placeholder)
@@ -312,13 +313,10 @@ class QuizApp:
 
     # ── Namenseingabe ────────────────────────────────────────────────────
     def _zeige_namenseingabe(self):
-        self.lbl_status.config(text="  Komplettes Quiz")
-        self.lbl_frage.config(text="Bitte gib deinen Namen ein:")
-        self.lbl_eingabe.config(text="Dein Name:")
-        self.eingabe_var.set("")
-        self._radiobuttons_leeren()
-        self.lbl_feedback.config(text="", fg="black")
-        self.lbl_score.config(text="")
+        name = self.lbl_frage.cget("text").replace("Willkommen, ", "").replace("!", "")
+        self._is_demo = False
+        self.session = QuizSession(name=name)
+        self._zeige_frage()
 
         self._btn_blau(self.btn1, "Quiz starten",       self._starte_quiz)
         self._btn_grau(self.btn2, "Zurück",             self._zeige_hauptmenu)
@@ -361,10 +359,7 @@ class QuizApp:
         self._buttons_leeren(von=3, bis=5)
 
     def _starte_demo(self):
-        name = self.eingabe_var.get().strip()
-        if not name:
-            messagebox.showerror("Fehler", "Bitte gib einen Namen ein!")
-            return
+        name = self.lbl_frage.cget("text").replace("Willkommen, ", "").replace("!", "")
         levels = ["leicht", "mittel", "schwer"]
         level_key = levels[self.radio_var.get()]
         self._is_demo = True
@@ -425,7 +420,7 @@ class QuizApp:
             self._radiobuttons_leeren()
 
         self._btn_blau(self.btn1, "Antwort bestätigen", self._antwort_pruefen)
-        self._btn_rot (self.btn2, "Quiz abbrechen",     self._abbrechen)
+        self._btn_rot(self.btn2, "Quiz abbrechen", self._abbrechen)
         self._buttons_leeren(von=3, bis=5)
 
     # ── Antwort prüfen ───────────────────────────────────────────────────
@@ -549,7 +544,8 @@ class QuizApp:
             "Quiz abbrechen",
             "Möchtest du das Quiz wirklich abbrechen?"
         ):
-            self._zeige_hauptmenu()
+            name = self.session.name if self.session else ""
+        self._zeige_optionen(name)
 
 
 # ── Einstiegspunkt ───────────────────────────────────────────────────────
