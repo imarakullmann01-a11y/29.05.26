@@ -4,9 +4,9 @@ from quiz_engine import QuizSession
 from scoring import load_scores
 
 # ── Farbpalette ──────────────────────────────────────────────────────────
-FARBE_BG      = "#EFF6FF"
-FARBE_KARTE   = "#FFFFFF"
-FARBE_KOPF_BG = "#1D4ED8"
+FARBE_BG      = "#EFF6FF" #Hintergrund 
+FARBE_KARTE   = "#FFFFFF" #Karte
+FARBE_KOPF_BG = "#1D4ED8" #Kopfzeile
 FARBE_KOPF_FG = "#FFFFFF"
 FARBE_TEXT    = "#1E3A5F"
 FARBE_SUBTEXT = "#3B82F6"
