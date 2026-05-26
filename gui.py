@@ -248,7 +248,26 @@ class QuizApp:
         self._btn_grau(self.btn4, "4)  Regeln anzeigen",                               self._zeige_regeln)
         self._btn_rot (self.btn5, "5)  Beenden",                                       self.root.quit)
 
-    # ── Komplettes Quiz starten ──────────────────────────────────────────
+        for btn in [self.btn1, self.btn2, self.btn3, self.btn4, self.btn5]:
+            btn.pack_forget()
+            btn.pack(anchor="center", pady=3, ipadx=80)
+            btn.config(width=40)
+
+    # ── Namenseingabe ────────────────────────────────────────────────────
+    def _zeige_namenseingabe(self):
+        self.lbl_status.config(text="  Komplettes Quiz")
+        self.lbl_frage.config(text="Bitte gib deinen Namen ein:")
+        self.lbl_eingabe.config(text="Dein Name:")
+        self.eingabe_var.set("")
+        self._radiobuttons_leeren()
+        self.lbl_feedback.config(text="", fg="black")
+        self.lbl_score.config(text="")
+
+        self._btn_blau(self.btn1, "Quiz starten",       self._starte_quiz)
+        self._btn_grau(self.btn2, "Zurück",             self._zeige_hauptmenu)
+        self._buttons_leeren(von=3, bis=5)
+
+    # ── Quiz starten ─────────────────────────────────────────────────────
     def _starte_quiz(self):
         self._is_demo = False
         self.session  = QuizSession(name=self._name)
@@ -279,7 +298,11 @@ class QuizApp:
         self._buttons_leeren(von=3, bis=5)
 
     def _starte_demo(self):
-        levels    = ["leicht", "mittel", "schwer"]
+        name = self.eingabe_var.get().strip()
+        if not name:
+            messagebox.showerror("Fehler", "Bitte gib einen Namen ein!")
+            return
+        levels = ["leicht", "mittel", "schwer"]
         level_key = levels[self.radio_var.get()]
         self._is_demo = True
         self.session  = QuizSession(name=self._name, start_level=level_key)
@@ -338,7 +361,7 @@ class QuizApp:
             self.lbl_eingabe.config(text="Deine Antwort:")
 
         self._btn_blau(self.btn1, "Antwort bestätigen", self._antwort_pruefen)
-        self._btn_rot (self.btn2, "Quiz abbrechen",     self._abbrechen)
+        self._btn_rot(self.btn2, "Quiz abbrechen", self._abbrechen)
         self._buttons_leeren(von=3, bis=5)
 
     # ── Antwort prüfen ───────────────────────────────────────────────────
@@ -459,7 +482,7 @@ class QuizApp:
             "Quiz abbrechen",
             "Möchtest du das Quiz wirklich abbrechen?"
         ):
-            self._zeige_optionen()
+            self._zeige_hauptmenu()
 
 
 # ── Einstiegspunkt ───────────────────────────────────────────────────────
