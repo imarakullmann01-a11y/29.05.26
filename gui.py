@@ -4,22 +4,22 @@ from quiz_engine import QuizSession
 from scoring import load_scores
 
 # ── Farbpalette ──────────────────────────────────────────────────────────
-FARBE_BG      = "#EFF6FF" #Hintergrund 
-FARBE_KARTE   = "#FFFFFF" #Karte
-FARBE_KOPF_BG = "#1D4ED8" #Kopfzeile
+# nachher: pink Style
+FARBE_BG      = "#FFF0F5"
+FARBE_KARTE   = "#FFE4EF"
+FARBE_KOPF_BG = "#E91E8C"
 FARBE_KOPF_FG = "#FFFFFF"
-FARBE_TEXT    = "#1E3A5F"
-FARBE_SUBTEXT = "#3B82F6"
-FARBE_BLAU    = "#60A5FA"
-FARBE_BLAU_H  = "#3B82F6"
-FARBE_GRAU    = "#93C5FD"
-FARBE_GRAU_H  = "#60A5FA"
-FARBE_ROT     = "#2563EB"
-FARBE_ROT_H   = "#1D4ED8"
+FARBE_TEXT    = "#4A0030"
+FARBE_SUBTEXT = "#C2185B"
+FARBE_BLAU    = "#F06292"
+FARBE_BLAU_H  = "#E91E8C"
+FARBE_GRAU    = "#F8BBD9"
+FARBE_GRAU_H  = "#F48FB1"
+FARBE_ROT     = "#C2185B"
+FARBE_ROT_H   = "#880E4F"
 FARBE_FG      = "#FFFFFF"
 FARBE_RICHTIG = "#16A34A"
 FARBE_FALSCH  = "#DC2626"
-
 
 class QuizApp:
 
@@ -61,28 +61,25 @@ class QuizApp:
     # ── Widgets einmalig aufbauen ────────────────────────────────────────
     def _build_ui(self):
         # Kopfzeile
-        tk.Label(self.root, text="Python-Quiz",
-                 font=("Helvetica", 22, "bold"),
-                 bg=FARBE_KOPF_BG, fg=FARBE_KOPF_FG, pady=18
-                 ).pack(fill="x")
-
-        tk.Label(self.root, text="Teste dein Python-Wissen",
-                 font=("Helvetica", 10),
-                 bg=FARBE_KOPF_BG, fg="#010408", pady=4
-                 ).pack(fill="x")
-
         self.lbl_status = tk.Label(
-            self.root, text="",
-            font=("Helvetica", 10, "bold"),
-            bg="#3B82F6", fg="white", pady=6
+    self.root, text="",
+    font=("Comic Sans MS", 12, "bold"),
+    bg=FARBE_KOPF_BG, fg="white", pady=6, anchor="center"
         )
         self.lbl_status.pack(fill="x")
+        tk.Label(self.root, text="", bg=FARBE_KOPF_BG, height=1).pack(fill="x")
 
+        tk.Label(self.root, text="Python-Quiz",
+         font=("Comic Sans MS", 26, "bold"),
+         bg=FARBE_BG, fg=FARBE_KOPF_BG, pady=10,
+         anchor="center", justify="center"
+         ).pack(fill="x", expand=True)
+        
         # Karte
         self.karte = tk.Frame(
             self.root, bg=FARBE_KARTE, padx=30, pady=20
         )
-        self.karte.pack(fill="both", expand=True, padx=25, pady=20)
+        self.karte.pack(fill="both", expand=True, padx=25, pady=(20, 20))
 
         # Statische Widgets (immer sichtbar)
         tk.Label(self.karte, text="", bg=FARBE_KARTE, height=1
@@ -90,32 +87,37 @@ class QuizApp:
 
         self.lbl_frage = tk.Label(
             self.karte, text="", wraplength=490, justify="left",
-            font=("Helvetica", 12), bg=FARBE_KARTE, fg=FARBE_TEXT
+            font=("Comic Sans MS", 12), bg=FARBE_KARTE, fg=FARBE_TEXT
         )
-        self.lbl_frage.pack(anchor="w", pady=(0, 12))
+        self.lbl_frage.pack(anchor="center", pady=(0, 12))
 
         self.lbl_eingabe = tk.Label(
-            self.karte, text="",
-            font=("Helvetica", 10, "bold"),
-            bg=FARBE_KARTE, fg=FARBE_TEXT
-        )
-        self.lbl_eingabe.pack(anchor="w")
+        self.karte,
+        text="",
+        font=("Comic Sans MS", 10, "bold"),
+        bg=FARBE_KARTE,
+        fg=FARBE_TEXT,
+        anchor="center",
+        justify="center"
+    )
+        self.lbl_eingabe.pack(anchor="center")
 
         # Dynamische Widgets — werden NICHT hier gepackt
         self.eingabe_var = tk.StringVar()
         self.entry = tk.Entry(
             self.karte, textvariable=self.eingabe_var,
-            width=44, font=("Helvetica", 11),
+            width=44, font=("Comic Sans MS", 11),
             relief="flat", bd=2, bg="#F8FAFC"
         )
 
         self.radio_var = tk.IntVar()
         self.radio_buttons = []
+        self.radio_frame = tk.Frame(self.karte, bg=FARBE_KARTE)
         for i in range(4):
             rb = tk.Radiobutton(
                 self.karte, text="",
                 variable=self.radio_var, value=i,
-                anchor="w", font=("Helvetica", 10),
+                anchor="w", font=("Comic Sans MS", 10), justify="left",
                 bg=FARBE_KARTE, fg=FARBE_TEXT,
                 selectcolor=FARBE_BLAU,
                 activebackground=FARBE_KARTE
@@ -125,11 +127,11 @@ class QuizApp:
         # Footer-Widgets — werden von _build_screen() verwaltet
         self.lbl_feedback = tk.Label(
             self.karte, text="",
-            font=("Helvetica", 10, "bold"), bg=FARBE_KARTE
+            font=("Comic Sans MS", 10, "bold"), bg=FARBE_KARTE
         )
         self.lbl_score = tk.Label(
             self.karte, text="",
-            font=("Helvetica", 10),
+            font=("Comic Sans MS", 10),
             bg=FARBE_KARTE, fg=FARBE_SUBTEXT
         )
         self.trenn2 = tk.Label(
@@ -137,7 +139,7 @@ class QuizApp:
         )
 
         btn_basis = dict(
-            font=("Helvetica", 10, "bold"), fg=FARBE_FG,
+            font=("Comic Sans MS", 10, "bold"), fg=FARBE_FG,
             relief="flat", bd=0, pady=8, cursor="hand2"
         )
         self.btn1 = tk.Button(self.karte, **btn_basis, bg=FARBE_BLAU)
@@ -156,6 +158,7 @@ class QuizApp:
         """
         # 1. Alles entfernen
         self.entry.pack_forget()
+        self.radio_frame.pack_forget() 
         for rb in self.radio_buttons:
             rb.pack_forget()
         self.lbl_feedback.pack_forget()
@@ -166,17 +169,19 @@ class QuizApp:
 
         # 2. Dynamischen Inhalt in richtiger Reihenfolge packen
         if entry:
-            self.entry.pack(anchor="w", pady=(4, 12))
+            self.entry.pack(anchor="center", pady=(4, 12))
 
+        if radiobuttons > 0:
+            self.radio_frame.pack(anchor="center", pady=5)
         for i in range(radiobuttons):
-            self.radio_buttons[i].pack(anchor="w", padx=10, pady=2)
+            self.radio_buttons[i].pack(in_=self.radio_frame, anchor="w", pady=2)
 
         # 3. Footer immer am Ende
-        self.lbl_feedback.pack(anchor="w", pady=(8, 2))
-        self.lbl_score.pack(anchor="w", pady=(0, 12))
+        self.lbl_feedback.pack(anchor="center", pady=(8, 2))
+        self.lbl_score.pack(anchor="center", pady=(0, 12))
         self.trenn2.pack(fill="x", pady=(0, 12))
         for btn in [self.btn1, self.btn2, self.btn3, self.btn4, self.btn5]:
-            btn.pack(fill="x", pady=3)
+            btn.pack(pady=3, ipadx=40, fill="x")
 
     def _dummy(self):
         pass
@@ -213,6 +218,14 @@ class QuizApp:
 
         self._btn_blau(self.btn1, "Weiter →", self._name_bestaetigen)
         self._buttons_leeren(von=2, bis=5)
+        self.lbl_score.config(
+    text="~ Teste dein Python-Wissen ~",
+    fg=FARBE_SUBTEXT,
+    font=("Comic Sans MS", 10, "italic"),
+    anchor="center",
+    justify="center"
+        )
+    
 
     def _clear_placeholder(self, event):
         if self.entry.get() == "Name eingeben":
@@ -240,7 +253,7 @@ class QuizApp:
         self.lbl_frage.config(text=f"Willkommen, {self._name}!")
         self.lbl_eingabe.config(text="")
         self.lbl_feedback.config(text="", fg="black")
-        self.lbl_score.config(text="Wähle eine Option:")
+        self.lbl_score.config(text="Wähle eine Option:", anchor="center", justify="center")
 
         self._btn_blau(self.btn1, "1)  Komplettes Quiz  (leicht → mittel → schwer)", self._starte_quiz)
         self._btn_grau(self.btn2, "2)  Level-Demo  (einzelnes Level auswählen)",      self._zeige_level_demo)
@@ -313,7 +326,11 @@ class QuizApp:
         self.eingabe_var.set("")
 
         if frage.qtype == "mc":
-            self.lbl_eingabe.config(text="Wähle eine Antwort:")
+            self.lbl_eingabe.config(
+            text="Wähle eine Antwort:",
+            anchor="center",
+            justify="center"
+            )
             for i, option in enumerate(frage.auswahl):
                 label = chr(ord("a") + i)
                 self.radio_buttons[i].config(
@@ -460,7 +477,6 @@ class QuizApp:
             "Möchtest du das Quiz wirklich abbrechen?"
         ):
             self._zeige_optionen()
-
 
 # ── Einstiegspunkt ───────────────────────────────────────────────────────
 if __name__ == "__main__":
