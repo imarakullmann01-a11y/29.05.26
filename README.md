@@ -32,11 +32,22 @@ Die GUI besteht aus einem einzigen Fenster, das sich je nach Spielzustand dynami
 aktualisiert. Wir haben bewusst auf mehrere separate Fenster verzichtet und stattdessen alle Inhalte über .config() aktualisiert.
 Seitenfluss
 • Startseite - Namenseingabe mit Platzhalter-Text (Name eingeben)
+<img width="1874" height="1087" alt="Screenshot 2026-05-28 185825" src="https://github.com/user-attachments/assets/71d66c7a-b0d4-4f87-bb98-5c5fd5d3a7c3" />
+
 • Hauptmenu - 5 Optionen: Komplettes Quiz, Level-Demo, Punktestände, Regeln,
 Beenden
+<img width="1875" height="1084" alt="Screenshot 2026-05-28 184537" src="https://github.com/user-attachments/assets/4e09dfe2-3ecf-4b57-9f1f-bf37233263b7" />
+
 • Quiz / Level-Demo - Fragen nacheinander, Antworttyp bestimmt Eingabemethode
+<img width="463" height="256" alt="Screenshot 2026-05-28 213114" src="https://github.com/user-attachments/assets/3a90fa5c-e27c-4b0e-9b03-0995fb790577" />
+
 • Ergebnis-Dialoge - Rückmeldung nach jeder Frage (richtig/falsch)
+<img width="1884" height="1106" alt="Screenshot 2026-05-28 212850" src="https://github.com/user-attachments/assets/831a8599-bf98-42dd-82a2-b0b7c0d9bbe1" />
+<img width="1881" height="1131" alt="Screenshot 2026-05-28 212911" src="https://github.com/user-attachments/assets/63a46b3e-6bf2-4e26-9be1-efac9fa2ecf7" />
+
 • Abschluss - Punktestand wird gespeichert, Dialog informiert den Spieler
+<img width="1858" height="1099" alt="Screenshot 2026-05-28 214610" src="https://github.com/user-attachments/assets/677773cf-5947-4dae-91aa-f169f05b9801" />
+
 Design
 Das Design wurde von einem blauen, klassischen Stil zu einem modernen Pink-Design
 weiterentwickelt. Die Schriftart wurde auf Comic Sans MS umgestellt.
@@ -49,18 +60,18 @@ Für Multiple-Choice-Fragen verwenden wir Radiobutton-Widgets. Ein Klick schreib
 Buchstaben automatisch per command=lambda in das Entry-Feld. Für Text- und
 Code-Fragen ist das Entry-Feld direkt aktiv. Dieses Feature ermöglicht es, mit nur einem
 Eingabefeld alle Fragetypen abzudecken.
-5. GitHub-Workflow
+6. GitHub-Workflow
 Das Projekt wurde über GitHub und Teams Calls bearbeitet. Der Workflow umfasste
 regelmäßige Commits, Push/Pull-Zyklen zur Synchronisierung im Team sowie die
 Auflösung von Merge-Konflikten.
 
-6. Was gut lief
+7. Was gut lief
 • Refrakturierung der Logik: Die Trennung von question.py in Logik und Darstellung
 verlief reibungslos.
 • Farbgestaltung und Hover-Effekte: Modernes, flaches Design mit bg=/fg= und bind().
 • GitHub-Workflow: Stabiler Commit/Push/Pull-Rhythmus trotz immer wieder aufkommender Schwierigkeiten.
 
-7. Probleme und Lösungen
+8. Probleme und Lösungen
 Problem 1: Git-Konfiguration und Merge-Konflikte
 Vor dem ersten Commit fehlte die Git-Konfiguration (user.name und user.email). Commits schlugen mit der Meldung 'Please tell me who you are' fehl. Zusätzlich entstanden Merge-Konflikte durch __pycache__-Dateien die fälschlicherweise getrackt wurden.
 Lösung: git config --global user.name/email im Terminal gesetzt. __pycache__ über
@@ -85,7 +96,7 @@ Problem 5: Design und Positionierung
 Das ursprüngliche Design wurde als zu altmodisch empfunden. Radiobuttons erschienen an falschen Positionen, Buttons hatten unterschiedliche Größen.
 Lösung: Vollständige Überarbeitung der Farbpalette zu Pink-Design. Konsistente
 anchor/justify-Parameter. Schriftart auf Comic Sans MS geändert.
-8. Fazit
+9. Fazit
 Im Laufe des Projekts sind wir auf viele technische und organisatorische
 Herausforderungen gestoßen, von der Git-Konfiguration über Layout-Probleme bis hin
 zur Umstrukturierung der Programmlogik. Dennoch konnten wir am Ende eine vollständig funktionierende GUI entwickeln, die alle geforderten Funktionen abdeckt.
@@ -93,3 +104,5 @@ Die Trennung von Logik und Darstellung, die zentrale _build_screen()-Methode und
 Die Zusammenarbeit im Team und der konsequente Einsatz von GitHub haben trotz
 anfänglicher Schwierigkeiten gut funktioniert. Dieses Projekt hat uns gezeigt, dass
 GUI-Entwicklung deutlich mehr Planung erfordert als CLI-Entwicklung - und dass es sich lohnt, von Anfang an auf eine klare Trennung von Darstellung und Logik zu achten.
+
+
