@@ -18,7 +18,8 @@ Fensterstruktur, Widgets, Layout und Design (Farbpalette, Schriftart, Seitenflus
 • Mehmet - Testing: Sicherstellung dass bestehende Funktionen weiterhin
 funktionieren, Ergänzung von Tests für neue Logik.
 • Annika - Präsentation: Vorbereitung der Projektvorstellung.
-3. Architektur und Dateistruktur
+Die zusammenarbeit verlief Harmonisch.
+4. Architektur und Dateistruktur
 Bevor wir mit der GUI begonnen haben, haben wir zunächst die bestehende main.py
 angepasst. Ziel war eine saubere Trennung von Darstellung und Logik:
 • quiz_engine.py - Spielzustand, Levelwechsel, Punkteberechnung
@@ -27,7 +28,7 @@ angepasst. Ziel war eine saubere Trennung von Darstellung und Logik:
 • scoring.py - JSON-Lesen/-Schreiben (unverändert)
 • cli.py - CLI-Schicht (ersetzt main.py)
 • gui.py - GUI-Schicht (neu entwickelt)
-4. Beschreibung der Oberfläche
+5. Beschreibung der Oberfläche
 Die GUI besteht aus einem einzigen Fenster, das sich je nach Spielzustand dynamisch
 aktualisiert. Wir haben bewusst auf mehrere separate Fenster verzichtet und stattdessen alle Inhalte über .config() aktualisiert.
 Seitenfluss
