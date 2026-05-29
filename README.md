@@ -9,7 +9,7 @@ bedienbar zu machen, ohne die bestehende Programmlogik grundlegend zu verändern
 Das Projekt wurde im Team erstellt, auf GitHub hochgeladen und abschließend präsentiert.
 2. Teamstruktur und Rollenverteilung
 Die Rollenverteilung im Team orientierte sich an den empfohlenen Rollen aus der
-Aufgabenstellung:
+Aufgabenstellung/ Teamarbeit:
 • Lea - Lead Developer: Verantwortlich für die technische Integration von GUI
 und Logik, Refrakturierung von quiz_engine.py und question.py sowie Pflege der
 GitHub-Struktur.
@@ -18,7 +18,7 @@ Fensterstruktur, Widgets, Layout und Design (Farbpalette, Schriftart, Seitenflus
 • Mehmet - Testing: Sicherstellung dass bestehende Funktionen weiterhin
 funktionieren, Ergänzung von Tests für neue Logik.
 • Annika - Präsentation: Vorbereitung der Projektvorstellung.
-Die zusammenarbeit verlief Harmonisch.
+Die zusammenarbeit verlief Harmonisch. Die Kommunikation lief hauptsächlich über WhatsApp. Lea und Imara haben zusätzlich regelmäßige Team-Calls gemacht und in der Uni haben wir uns ebenfalls abgestimmt und den Code gemeinsam durchgegangen. GitHub sorgte dafür, dass alle immer auf dem aktuellen Stand waren. Wir würden nichts grundlegend ändern wir haben aus unseren Fehlern gelernt und nehmen diese Erfahrungen mit ins nächste Projekt.
 4. Architektur und Dateistruktur
 Bevor wir mit der GUI begonnen haben, haben wir zunächst die bestehende main.py
 angepasst. Ziel war eine saubere Trennung von Darstellung und Logik:
@@ -28,7 +28,9 @@ angepasst. Ziel war eine saubere Trennung von Darstellung und Logik:
 • scoring.py - JSON-Lesen/-Schreiben (unverändert)
 • cli.py - CLI-Schicht (ersetzt main.py)
 • gui.py - GUI-Schicht (neu entwickelt)
-5. Beschreibung der Oberfläche
+<img width="1005" height="664" alt="Screenshot 2026-05-29 023145" src="https://github.com/user-attachments/assets/35b0f5d8-fc14-4747-9b95-706f5d9e6af8" />
+
+6. Beschreibung der Oberfläche
 Die GUI besteht aus einem einzigen Fenster, das sich je nach Spielzustand dynamisch
 aktualisiert. Wir haben bewusst auf mehrere separate Fenster verzichtet und stattdessen alle Inhalte über .config() aktualisiert.
 Seitenfluss
